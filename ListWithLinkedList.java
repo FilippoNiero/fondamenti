@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class ListWithLinkedList<E> implements Container, Iterable<E> {
+public class ListWithLinkedList<E> implements List<E>, Iterable<E> {
 	private Node head, tail;
 	private int size;
 
@@ -56,66 +56,92 @@ public class ListWithLinkedList<E> implements Container, Iterable<E> {
 		return size == 0;
 	}
 
-	public void addFirst(E elem) {
-		head.next = new Node(head.next, elem);
-		if(size == 0) {
-			tail = head.next;
-		}
-		size++;
-	}
-
-	public void addLast(E elem) {
-		tail.next = new Node(null, elem);
-		tail = tail.next;
-		size++;
-	}
-
-	public E removeFirst() {
-		if(isEmpty()) {
-			throw new IllegalStateException();
-		}
-		E temp = head.next.value;
-		head.next = head.next.next;
-		size--;
-		return temp;
-	}
-
-	public E removeLast() {
-		if(isEmpty()) {
-			throw new IllegalStateException();
-		}
-		E temp = tail.value;
-		//Imposto tail al penultimo nodo
-		Node it = head;
-		while(it.next != tail) {
-			it = it.next;
-		}
-		tail = it;
-		tail.next = null;
-		size--;
-		return temp;
-	}
-
-
 	@Override
 	public Iterator<E> iterator() {
 		return new ListIterator();
 	}
 
-	public static void main(String[] args) {
-		ListWithLinkedList<Integer> l = new ListWithLinkedList<>();
-		l.addFirst(1);//[1]
-		l.addFirst(1);//[1] - [1]
-		l.addFirst(2);//[2] - [1] - [1]
-		l.addFirst(3);//[3] - [2] - [1] - [1]
-		l.addLast(4);//[3] - [2] - [1] - [1] - [4]
-		l.addLast(5);//[3] - [2] - [1] - [1] - [4] - [5]
-		l.addLast(6);//[3] - [2] - [1] - [1] - [4] - [5] - [6]
-		for(Integer i: l) {
-			System.out.println(i);
+
+
+	@Override
+	public E get(int rank) {
+		if(rank < 0 || rank >= size) {
+			throw new IllegalArgumentException("List index out of bounds");
+		}
+		Node node = head;
+		for(int i = 0; i < rank-1; i++) {
+			node = node.next;
+		}
+		return node.next.value;
+	}
+
+	@Override
+	public int rankOf(E element) {
+		Node node = head.next;
+		int curr = 0;
+		while(node != null) {
+			if(node.value.equals(element)) {
+				return curr;
+			}
+			curr++;
+			node = node.next;
+		}
+		return -1;
+	}
+
+	@Override
+	public void add(E element) {
+		tail.next = new Node(null, element);
+		tail = tail.next;
+		size++;
+	}
+
+	@Override
+	public void remove(int rank) {
+		if(rank < 0 || rank >= size) {
+			throw new IllegalArgumentException("List index out of bounds");
+		}
+		Node node = head;
+		for(int i = 0; i < rank-1; i++) {
+			node = node.next;
+		}
+		node.next = node.next.next;
+		if(node.next == null) {
+			tail = node;
+		}
+		size--;
+	}
+
+	@Override
+	public void remove(E element) {
+		int index = rankOf(element);
+		if(index != -1) {
+			remove(index);
 		}
 	}
 
+	public static void main(String[] args) {
+		ListWithLinkedList<String> l = new ListWithLinkedList<>();
+		l.add("a");
+		l.add("ab");
+		l.add("ac");
+		l.add("ad");
+		l.remove(0);
+		l.remove(0);
+		l.remove(0);
+		l.remove(0);
+		l.add("b");
+		l.add("c");
+		l.add("d");
+		l.add("e");
+		for(String s: l) {
+			System.out.println(l.rankOf(s));
+		}
+		l.remove(l.size() -1);
+		for(String s: l) {
+			System.out.println(s);
+		}
+	}
 
 	
 }
