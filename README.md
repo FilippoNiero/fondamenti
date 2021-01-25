@@ -11,7 +11,7 @@ Più avanti farò anche le interfacce, per ora l'importante era mostrare come fu
 [✔️] Linked List  
 [✔️] Double linked list  
 ## Lista
-[] Lista con array  
+[✔️] Lista con array  
 [✔️] Catena  
 ## Stack
 [✔️] Con array di lunghezza variabile  

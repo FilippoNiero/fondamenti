@@ -43,11 +43,17 @@ public class StackWithArray<E> implements Stack<E>{
 
 	@Override
 	public void push(E element) {
+		if(size == arr.length) {
+			Object[] newArr = new Object[2* size];
+			System.arraycopy(arr, 0, newArr , 0, size);
+			arr = newArr;
+		}
+
 		arr[size++] = element;
 	}
 
 	public static void main(String[] args) {
-		Stack<Integer> s = new StackWithList<>();
+		Stack<Integer> s = new StackWithArray<>();
 		s.push(1);
 		s.push(2);
 		s.push(3);
