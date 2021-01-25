@@ -23,7 +23,7 @@ Più avanti farò anche le interfacce, per ora l'importante era mostrare come fu
 [✔️] Con double linked list  
 [✔️] Con array circolare  
 ## Mappa
-[] Array  
+[✔️] Array  
 [] Array ordinato  
 [✔️] HashMap  
 ## Multimappa  

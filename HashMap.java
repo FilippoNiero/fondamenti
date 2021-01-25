@@ -1,4 +1,4 @@
-public class HashMap < K, V > implements Container {
+public class HashMap < K, V > implements Map<K,V> {
 	public static final int CAPACITY = 227;
 	private Object[] arr;
 	private int size;
