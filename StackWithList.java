@@ -1,4 +1,4 @@
-public class StackWithList<E> implements Container{
+public class StackWithList<E> implements Stack<E>{
 	private LinkedList<E> ll;
 
 	public StackWithList() {
