@@ -1,4 +1,4 @@
-public class DequeWithList<E> implements Container{
+public class DequeWithList<E> implements Deque<E>{
 	//Praticamente copiata da DoubleLinkedList
 	private DoubleLinkedList<E> list;
 

@@ -58,7 +58,7 @@ public class QueueWithCircularArray<E> implements Queue<E> {
 			else {
 				System.arraycopy(arr, front, newArr , 0, arr.length - front);
 				System.arraycopy(arr, 0, newArr , arr.length - front, back+1);
-				back = 0;
+				front = 0;
 				back = size -1;
 			}
 			arr = newArr;

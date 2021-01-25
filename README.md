@@ -21,7 +21,7 @@ Più avanti farò anche le interfacce, per ora l'importante era mostrare come fu
 [✔️] Con array circolare (lunghezza variabile)  
 ## Deque 
 [✔️] Con double linked list  
-[] Con array circolare  
+[✔️] Con array circolare  
 ## Mappa
 [] Array  
 [] Array ordinato  
