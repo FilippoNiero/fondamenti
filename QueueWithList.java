@@ -1,4 +1,4 @@
-public class QueueWithList<E> implements Container{
+public class QueueWithList<E> implements Queue<E> {
 	private LinkedList<E> ll;
 
 	public QueueWithList() {
